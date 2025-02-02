@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Card,
   CardContent,
@@ -12,9 +10,12 @@ import Link from "next/link";
 
 import RegisterFields from "@/components/RegisterFields/RegisterFields";
 
+export const metadata = {
+  title: "Register - Beyond Chat",
+  description: "Register for Beyond Chat",
+};
+
 const Register = () => {
-
-
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <Card className="w-full max-w-md">

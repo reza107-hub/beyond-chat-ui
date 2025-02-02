@@ -1,22 +1,40 @@
-'use client'
+"use client";
 
 import { useForm } from "react-hook-form";
 import InputField from "../InputField/InputField";
 import { TFormData } from "@/utils/Type";
 import { User, Mail, Lock, ArrowRight } from "lucide-react";
 import { Button } from "../ui/button";
+import useAuth from "@/hooks/useAuth";
+import Swal from "sweetalert2";
 
 const RegisterFields = () => {
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-      } = useForm<TFormData>();
+  const { createUser, updateUserProfile, verifyEmail } = useAuth();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<TFormData>();
 
-      const onSubmit = (data: TFormData) => {
-        console.log(data);
-        // Handle form submission here
-      };
+  const onSubmit = async (data: TFormData) => {
+    const { name, email, password } = data;
+    try {
+      const res = await createUser(email, password);
+      if (res.user.email === email) {
+        await updateUserProfile(name, "");
+        await verifyEmail();
+        Swal.fire({
+          title: "Registration Successful Check email to verify",
+          icon: "success",
+        }).then(() => {
+          window.location.href = "/";
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    // Handle form submission here
+  };
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
       <InputField
@@ -76,4 +94,4 @@ const RegisterFields = () => {
   );
 };
 
-export default RegisterFields
+export default RegisterFields;

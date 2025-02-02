@@ -22,22 +22,15 @@ export type TInputFieldProps = {
   register: UseFormRegister<any>;
   validation?: object;
   error?: FieldError;
-}
+};
 
 export type TAuthContext = {
   user: any;
-
   loading: boolean;
-
   createUser: (email: string, password: string) => Promise<any>;
-
   signIn: (email: string, password: string) => Promise<any>;
-
   googleSignIn: () => Promise<any>;
-
   logOut: () => Promise<void>;
-
   updateUserProfile: (name: string, photo: string) => Promise<void> | undefined;
-
   verifyEmail: () => Promise<void> | undefined;
 };
