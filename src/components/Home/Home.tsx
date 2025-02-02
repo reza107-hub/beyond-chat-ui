@@ -2,6 +2,7 @@ import { ArrowRight, Rocket } from "lucide-react";
 import { Button } from "../ui/button";
 import { features } from "@/utils/Features";
 import FeatureCard from "../features/FeatureCard";
+import Link from "next/link";
 
 const Home = () => {
   return (
@@ -21,13 +22,15 @@ const Home = () => {
           </p>
 
           <div className="pt-4">
-            <Button
-              size="lg"
-              className="group hover:shadow-lg transform hover:scale-105 transition-all duration-300"
-            >
-              Setup Organisation
-              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-            </Button>
+            <Link href="/setup-organisation">
+              <Button
+                size="lg"
+                className="group hover:shadow-lg transform hover:scale-105 transition-all duration-300"
+              >
+                Setup Organisation
+                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </Link>
           </div>
         </div>
 
